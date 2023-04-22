@@ -1,72 +1,88 @@
 package model;
 
-import java.sql.Date;
-
 public class Person {
-	String firstName;
-	String lastName;
-	Date dob;
-	Sex sex;
-	Profession profession;
+	String name;
+	int age;
+	double height;
+	double weight;
+	Gender gender;
+	String from;
+	Hobby hobby;
 	
+	public Person(String name, int age, double height, double weight, Gender gender, String from, Hobby hobby) {
+		this.name = name;
+		this.age = age;
+		this.height = height;
+		this.weight = weight;
+		this.gender = gender;
+		this.from = from;
+		this.hobby = hobby;
+	}
+
+	public String getName() {
+		return name;
+	}
 	
+	public int getAge() {
+		return age;
+	}
 	
-	public Person(String firstName, String lastName, Date dob, Sex sex) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dob = dob;
-		this.sex = sex;
+	public double getHeight() {
+		return height;
 	}
-
-	public String getFirstName() {
-		return firstName;
+	
+	public double getWeight() {
+		return weight;
 	}
-
-	public String getLastName() {
-		return lastName;
+	
+	public Gender getGender() {
+		return gender;
 	}
-
-	public Date getDob() {
-		return dob;
+	
+	public String getFrom() {
+		return from;
 	}
-
-	public Sex getSex() {
-		return sex;
+	
+	public Hobby getHobby() {
+		return hobby;
 	}
-
-	public Profession getProfession() {
-		return profession;
+	
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	
+	public void setAge(int age) {
+		this.age = age;
 	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	
+	public void setHeight(double height) {
+		this.height = height;
 	}
-
-	public void setDob(Date dob) {
-		this.dob = dob;
+	
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
-
-	public void setSex(Sex sex) {
-		this.sex = sex;
+	
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
-
-	public void setProfession(Profession profession) {
-		this.profession = profession;
+	
+	public void setFrom(String from) {
+		this.from = from;
+	}
+	
+	public void setHobby(Hobby hobby) {
+		this.hobby = hobby;
 	}
 
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob + ", sex=" + sex
-				+ ", profession=" + profession + "]";
-	}		
+		return "Person [name=" + name + ", age=" + age + ", height=" + height + ", weight=" + weight + ", gender="
+				+ gender + ", from=" + from + ", hobby=" + hobby + "]";
+	}
 }
 
-enum Sex{
-	M,
-	F
+enum Gender{
+	MALE,
+	FEMALE
 }
