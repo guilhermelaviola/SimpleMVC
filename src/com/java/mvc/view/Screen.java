@@ -1,4 +1,4 @@
-package mvc.view;
+package com.java.mvc.view;
 
 import java.util.ArrayList;
 

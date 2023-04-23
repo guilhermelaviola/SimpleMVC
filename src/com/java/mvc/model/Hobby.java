@@ -1,4 +1,4 @@
-package mvc.model;
+package com.java.mvc.model;
 
 public class Hobby {
 	String hobbies;
