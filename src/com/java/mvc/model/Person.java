@@ -5,11 +5,11 @@ public class Person {
 	int age;
 	double height;
 	double weight;
-	Gender gender;
+	String gender;
 	String from;
 	Hobby hobby;
 	
-	public Person(String name, int age, double height, double weight, Gender gender, String from, Hobby hobby) {
+	public Person(String name, int age, double height, double weight, String gender, String from, Hobby hobby) {
 		this.name = name;
 		this.age = age;
 		this.height = height;
@@ -35,7 +35,7 @@ public class Person {
 		return weight;
 	}
 	
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 	
@@ -63,7 +63,7 @@ public class Person {
 		this.weight = weight;
 	}
 	
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	
@@ -80,9 +80,4 @@ public class Person {
 		return "Person [name=" + name + ", age=" + age + ", height=" + height + ", weight=" + weight + ", gender="
 				+ gender + ", from=" + from + ", hobby=" + hobby + "]";
 	}
-}
-
-enum Gender{
-	MALE,
-	FEMALE
 }

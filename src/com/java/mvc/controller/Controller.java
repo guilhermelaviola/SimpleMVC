@@ -62,7 +62,7 @@ public class Controller {
 			}
 			String from = "";
 			from += (String) view.getComboState().getSelectedItem();
-			Person person = new Person(name, age, height, weight, gender, from);
+			Person person = new Person(name, age, height, weight, gender, from, null);
 			String hobbies =  "";
 			for (JCheckBox x : view.getHobby()) {
 				if (x.isSelected()) {
@@ -80,7 +80,6 @@ public class Controller {
 	
 	private void alterAge() {
 		
-		}
 	}
 	
 	private void clearFields() {
