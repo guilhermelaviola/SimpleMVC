@@ -2,12 +2,15 @@ package com.java.mvc.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
 import com.java.mvc.model.Hobby;
 import com.java.mvc.model.Person;
+import com.java.mvc.model.PersonDAO;
 import com.java.mvc.view.Screen;
 
 public class Controller {
@@ -79,26 +82,99 @@ public class Controller {
 	}
 	
 	private void alterAge() {
-		
+		try {
+			String name = view.getTxtName().getText();
+			int age = Integer.parseInt(view.getTxtAge().getText());
+			PersonDAO personDAO1 = new PersonDAO();
+			if (personDAO1.alterAge(name, age)) {
+				JOptionPane.showMessageDialog(null, "Age changed sucessfully!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Age not changed!", "ERROR", 0);
+			}
+		} catch (NumberFormatException error) {
+			JOptionPane.showMessageDialog(view, "Enter a valid age number", "INVALID NUMBER", 0);
+		}
+		listData();
 	}
 	
 	private void clearFields() {
-		
+		view.getTxtName().setText("");
+		view.getTxtAge().setText("");
+		view.getTxtWeight().setText("");
+		view.getTxtHeight().setText("");
+		view.getBtnGender().clearSelection();
+		view.getComboState().setSelectedIndex(0);
+		for (JCheckBox x : view.getHobby()) {
+			x.setSelected(false);
+		}
+		view.getExitArea().setText("");
 	}
 	
 	private Person getData() {
-		return null;
+		try {
+			String name = view.getTxtName().getText();
+			String temp = view.getTxtAge().getText();
+			int age = Integer.parseInt(temp);
+			temp = view.getTxtHeight().getText();
+			double height = Double.parseDouble(temp);
+			temp = view.getTxtWeight().getText();
+			double weight = Double.parseDouble(temp);
+			String gender;
+			if (view.getRadioFemale().isSelected()) {
+				gender = "Female";
+			} else {
+				gender = "Male";
+			}
+			String from = (String) view.getComboState().getSelectedItem();
+			Person person = new Person(name, age, height, weight, gender, from, null);
+			return person;
+		} catch (NumberFormatException error) {
+			JOptionPane.showMessageDialog(view, "Enter valid numbers for age, height and weight: " + error.getMessage(), "INVALID NUMBER", 0);
+			return null;
+		}
 	}
 	
 	private void insertData() {
-		
+		Person person1 = getData();
+		if (person1 != null) {
+			PersonDAO personDAO1 = new PersonDAO();
+			if (personDAO1.insertPerson(person1)) {
+				JOptionPane.showMessageDialog(view, "The data was sucessfully inserted!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Data not inserted", "ERROR", 0);
+			}
+			listData();
+		}
 	}
 	
 	private void listData() {
-		
+		PersonDAO personDAO1 = new PersonDAO();
+		try {
+			ResultSet rs = personDAO1.searchAllPeople();
+			view.getExitArea().setText("");
+			while (rs.next()) {
+				String list = ("ID: " + rs.getInt("PERSONID") + "\tName: "
+                        + rs.getString("NAME") + "\tAge: "
+                        + rs.getInt("AGE") + "\tHeight: "
+                        + rs.getDouble("HEIGHT") + "\tWeight: "
+                        + rs.getDouble("WEIGHT") + "Gender: "
+                        + rs.getString("GENDER") + "\tState: "
+                        + rs.getString("STATE") + "\n");
+				view.getExitArea().append(list);
+			}
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(view, "It was not possible to list the data!", "ERROR", 0);
+		}
 	}
 	
 	private void removeData() {
-		
+		String name = view.getTxtName().getText();
+		PersonDAO personDAO1 = new PersonDAO();
+		if (personDAO1.removePerson(name)) {
+			JOptionPane.showMessageDialog(view, "Data removed sucessfully!");
+		} else {
+			JOptionPane.showMessageDialog(view, "It was not possible to remove the data!", "ERROR", 0);
+		}
+		listData();
 	}
 }
