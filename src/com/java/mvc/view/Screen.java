@@ -76,16 +76,16 @@ public class Screen extends JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(619, 432));
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel1.setText("Nome");
+        jLabel1.setText("Name");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Idade");
+        jLabel2.setText("Age");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setText("Altura");
+        jLabel3.setText("Height");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel4.setText("Peso");
+        jLabel4.setText("Weight");
 
         txtName.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtName.setNextFocusableComponent(txtAge);

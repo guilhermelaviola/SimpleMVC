@@ -31,6 +31,8 @@ public class Controller {
 					clearFields();
 				}else if (ev.getSource() == view.getBtnInput()) {
 					enterData();
+				}else if (ev.getSource() == view.getBtnInsert()) {
+					insertData();
 				}else if (ev.getSource() == view.getBtnAlter()) {
 					alterAge();
 				}else if (ev.getSource() == view.getBtnRemove()) {
